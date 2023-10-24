@@ -99,7 +99,7 @@ class SaleOrder(models.Model):
         view_kanban_id = self.env.ref('project.view_project_kanban').id
         action = {
             'type': 'ir.actions.act_window',
-            'domain': [('id', 'in', self.project_ids.ids)],
+            'domain': [('id', 'in', self.with_context(active_test=False).project_ids.ids), ('active', 'in', [True, False])],
             'view_mode': 'kanban,form',
             'name': _('Projects'),
             'res_model': 'project.project',
